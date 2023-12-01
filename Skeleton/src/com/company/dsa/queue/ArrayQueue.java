@@ -22,7 +22,7 @@ public class ArrayQueue<E> implements Queue<E> {
     @Override
     public void enqueue(E element) {
 
-        if (size == capacity) {
+        if (tail == items.length) {
             resize();
         }
 
@@ -38,6 +38,7 @@ public class ArrayQueue<E> implements Queue<E> {
         }
         E deleteElement = items[head];
         head++;
+        size--;
         return deleteElement;
     }
 
@@ -60,6 +61,6 @@ public class ArrayQueue<E> implements Queue<E> {
     }
 
     private void resize() {
-        this.items = Arrays.copyOf(this.items, size() * 2);
+        this.items = Arrays.copyOf(this.items, items.length * 2);
     }
 }

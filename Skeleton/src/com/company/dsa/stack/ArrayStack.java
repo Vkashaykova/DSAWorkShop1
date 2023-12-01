@@ -18,7 +18,7 @@ public class ArrayStack<E> implements Stack<E> {
 
     @Override
     public void push(E element) {
-        if (top == capacity) {
+        if (top == items.length) {
             resize();
         }
         items[top] = element;
@@ -31,6 +31,7 @@ public class ArrayStack<E> implements Stack<E> {
         if (isEmpty()) {
             throw new NoSuchElementException(STACK_IS_EMPTY);
         }
+
         top--;
         return items[top];
     }
@@ -54,7 +55,7 @@ public class ArrayStack<E> implements Stack<E> {
     }
 
     private void resize() {
-        this.items = Arrays.copyOf(this.items, capacity * 2);
+        this.items = Arrays.copyOf(this.items, items.length * 2);
     }
 
 
